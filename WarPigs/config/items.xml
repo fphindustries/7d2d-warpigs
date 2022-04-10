@@ -1,0 +1,21 @@
+<configs>
+    <append xpath="/items">
+        <!-- icon apparelEyeglasses is a greyscaled version -->
+        <item name="apparel1337Glasses">
+            <property name="Extends" value="apparelShades"/>
+            <property name="DisplayType" value="clothing1337Glasses"/>
+            <property class="UMA">
+                <property name="Mesh" value="specs"/>
+                <property name="Overlay0" value="specs"/>
+            </property>
+            <property name="CustomIcon" value="apparelNerdGlasses"/>
+            <property name="CustomIconTint" value="c32c57"/>
+            <property name="DescriptionKey" value="apparel1337GlassesDesc"/>
+            <property name="EconomicValue" value="1000"/>
+            <effect_group tiered="false">
+                <passive_effect name="PlayerExpGain" operation="perc_subtract" value="0.8" />
+                <display_value name="dPlayerExpGain" value="-.8"/>
+            </effect_group>
+        </item>
+    </append>
+</configs>

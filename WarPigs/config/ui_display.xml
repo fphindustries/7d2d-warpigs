@@ -1,0 +1,7 @@
+<configs>
+    <append xpath="/ui_display_info/item_display">
+        <item_display_info display_type="clothing1337Glasses" display_group="groupAttire">
+            <display_entry name="dPlayerExpGain" title_key="statShowPlayerExpGain" display_type="Percent" display_leading_plus="true" negative_preferred="true"/>
+        </item_display_info>
+    </append>
+</configs>
