@@ -56,7 +56,7 @@ namespace WarPigs.SharedXP.Harmony
 
                 foreach (EntityPlayer player in GameManager.Instance.World.Players.list)// this list is only of active players
                 {
-                    if (player != __instance.parent)
+                    if (player != __instance.parent )
                     {
                         var playerXp = player.GetCVar(_cvarXPName);
                         if (playerXp < maxExperience)
@@ -64,7 +64,10 @@ namespace WarPigs.SharedXP.Harmony
                             var delta = maxExperience - playerXp;
                             Log.Out($"Adding {delta} {_cvarXPName} xp to {player.EntityName}");
 
-                            player.Progression.AddLevelExp(Convert.ToInt32(delta), _cvarXPName, _xpType, useBonus);
+                            NetPackageEntityAddExpClient package = NetPackageManager.GetPackage<NetPackageEntityAddExpClient>().Setup(player.entityId, Convert.ToInt32(delta), _xpType);
+                            SingletonMonoBehaviour<ConnectionManager>.Instance.SendPackage(package, false, player.entityId, -1, -1, -1);
+
+                            //player.Progression.AddLevelExp(Convert.ToInt32(delta), _cvarXPName, _xpType, useBonus);
                         }
                     }
                 }
