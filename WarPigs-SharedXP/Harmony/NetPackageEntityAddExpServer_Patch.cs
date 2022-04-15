@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 namespace WarPigs.SharedXP.Harmony
 {
     [HarmonyPatch(typeof(NetPackageEntityAddExpServer))]
-    [HarmonyPatch("ProcessPackage")]
+    [HarmonyPatch(nameof(NetPackageEntityAddExpServer.ProcessPackage))]
 
     public class NetPackageEntityAddExpServer_Patch
     {
-        private static bool Prefix(NetPackageEntityAddExpServer __instance, World _world, GameManager _callbacks, int ___entityId, int ___xp, int ___xpType)
+        private static bool Prefix(NetPackageEntityAddExpServer __instance)
         {
-            Log.Out($"AddExpServer> Entity: {___entityId} XP: {___xp} Type: {___xpType}");
+            Log.Out($">>>>>>>>>>>>>>>AddExpServer");
 
             // If I did not want the method we are patching to run at all, we would return false.
             return true;
