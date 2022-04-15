@@ -37,41 +37,41 @@ namespace WarPigs.SharedXP.Harmony
         }
     }
 
-    [HarmonyPatch(typeof(Progression))]
-    [HarmonyPatch("AddLevelExp")]
-    public class SharedXPPreExecute
-    {
-        private static void Postfix(Progression __instance, int _exp, string _cvarXPName, Progression.XPTypes _xpType, bool useBonus)
-        {
-            if (_xpType == Progression.XPTypes.Debug) return;
+    //[HarmonyPatch(typeof(Progression))]
+    //[HarmonyPatch("AddLevelExp")]
+    //public class SharedXPPreExecute
+    //{
+    //    private static void Postfix(Progression __instance, int _exp, string _cvarXPName, Progression.XPTypes _xpType, bool useBonus)
+    //    {
+    //        if (_xpType == Progression.XPTypes.Debug) return;
 
-            float maxExperience = 0;
-            foreach (EntityPlayer player in GameManager.Instance.World.Players.list)// this list is only of active players
-            {
-                maxExperience = Math.Max(player.GetCVar(_cvarXPName), maxExperience);
-            }
-            if (maxExperience > 0)
-            {
-                Log.Out($"Max {_cvarXPName} Experience: {maxExperience}");
+    //        float maxExperience = 0;
+    //        foreach (EntityPlayer player in GameManager.Instance.World.Players.list)// this list is only of active players
+    //        {
+    //            maxExperience = Math.Max(player.GetCVar(_cvarXPName), maxExperience);
+    //        }
+    //        if (maxExperience > 0)
+    //        {
+    //            Log.Out($"Max {_cvarXPName} Experience: {maxExperience}");
 
-                foreach (EntityPlayer player in GameManager.Instance.World.Players.list)// this list is only of active players
-                {
-                    if (player != __instance.parent )
-                    {
-                        var playerXp = player.GetCVar(_cvarXPName);
-                        if (playerXp < maxExperience)
-                        {
-                            var delta = maxExperience - playerXp;
-                            Log.Out($"Adding {delta} {_cvarXPName} xp to {player.EntityName}");
+    //            foreach (EntityPlayer player in GameManager.Instance.World.Players.list)// this list is only of active players
+    //            {
+    //                if (player != __instance.parent )
+    //                {
+    //                    var playerXp = player.GetCVar(_cvarXPName);
+    //                    if (playerXp < maxExperience)
+    //                    {
+    //                        var delta = maxExperience - playerXp;
+    //                        Log.Out($"Adding {delta} {_cvarXPName} xp to {player.EntityName}");
 
-                            NetPackageEntityAddExpClient package = NetPackageManager.GetPackage<NetPackageEntityAddExpClient>().Setup(player.entityId, Convert.ToInt32(delta), _xpType);
-                            SingletonMonoBehaviour<ConnectionManager>.Instance.SendPackage(package, false, player.entityId, -1, -1, -1);
+    //                        NetPackageEntityAddExpClient package = NetPackageManager.GetPackage<NetPackageEntityAddExpClient>().Setup(player.entityId, Convert.ToInt32(delta), _xpType);
+    //                        SingletonMonoBehaviour<ConnectionManager>.Instance.SendPackage(package, false, player.entityId, -1, -1, -1);
 
-                            //player.Progression.AddLevelExp(Convert.ToInt32(delta), _cvarXPName, _xpType, useBonus);
-                        }
-                    }
-                }
-            }
-        }
-    }
+    //                        //player.Progression.AddLevelExp(Convert.ToInt32(delta), _cvarXPName, _xpType, useBonus);
+    //                    }
+    //                }
+    //            }
+    //        }
+    //    }
+    //}
 }

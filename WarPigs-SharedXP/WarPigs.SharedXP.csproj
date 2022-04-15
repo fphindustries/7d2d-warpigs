@@ -73,6 +73,7 @@
     <Compile Include="Harmony\Init.cs" />
     <Compile Include="Harmony\NetPackageEntityAddExpClient_Patch.cs" />
     <Compile Include="Harmony\NetPackageEntityAddExpServer_Patch.cs" />
+    <Compile Include="Harmony\Progression_Patch.cs" />
     <Compile Include="Harmony\SharedXPPreExecute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

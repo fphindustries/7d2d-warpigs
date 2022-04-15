@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace WarPigs.SharedXP.Harmony
 {
-    [HarmonyPatch(typeof(EntityAlive))]
-    [HarmonyPatch(nameof(EntityAlive.OnEntityDeath))]
-    public class EntityAlive_Patch
+    [HarmonyPatch(typeof(Progression))]
+    [HarmonyPatch("AddLevelExp")]
+    public class Progression_Patch
     {
-        private static bool Prefix(EntityAlive __instance)
+        private static bool Prefix(Progression __instance)
         {
-            Log.Out($">>>>>>> OnEntityDeath <<<<<<<<<<<<<");
+            Log.Out($">>>>>>> AddLevelExp <<<<<<<<<<<<<");
 
             // If I did not want the method we are patching to run at all, we would return false.
             return true;
