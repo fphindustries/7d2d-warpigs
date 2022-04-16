@@ -53,7 +53,19 @@ namespace WarPigs.SharedXP.Harmony
                         {
                             var newXp = Convert.ToInt32(maxXp - playerXp);
                             Log.Out($"Adding {newXp} {experienceType} to {player.GetDebugName()}");
-                            player.Progression.AddLevelExp(newXp, experienceType, GetXPTypeFromCvar(experienceType), false);
+                            var clientInfo = SingletonMonoBehaviour<ConnectionManager>.Instance.Clients.ForEntityId(player.entityId);
+                            if(clientInfo != null)
+                            {
+                                clientInfo.SendPackage(NetPackageManager.GetPackage<NetPackageEntityAddExpClient>().Setup(player.entityId, newXp, GetXPTypeFromCvar(experienceType)));
+                            }
+                            else
+                            {
+                                Log.Out("Couldn't find clientinfo");
+                            }
+
+
+                            //player.Progression.AddLevelExp(newXp, experienceType, c, false);
+                            
                         }
                     }
                     //Log.Out($"->{localPlayer.GetDebugName()}: {localXp}");
