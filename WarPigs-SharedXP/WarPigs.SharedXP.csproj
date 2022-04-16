@@ -70,6 +70,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Harmony\EntityAlive_Patch.cs" />
+    <Compile Include="Harmony\EntityPlayerLocal_Update.cs" />
     <Compile Include="Harmony\Init.cs" />
     <Compile Include="Harmony\NetPackageEntityAddExpClient_Patch.cs" />
     <Compile Include="Harmony\NetPackageEntityAddExpServer_Patch.cs" />
