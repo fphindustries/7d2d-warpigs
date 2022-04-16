@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace WarPigs.SharedXP.Harmony
 {
-    [HarmonyPatch(typeof(NetPackageEntityAddExpClient))]
+    [HarmonyPatch(typeof(NetPackageModifyCVar))]
     [HarmonyPatch("ProcessPackage")]
     public class NetPackageModifyCVar_ProcessPackage
     {
