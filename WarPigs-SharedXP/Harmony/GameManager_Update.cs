@@ -12,7 +12,7 @@ namespace WarPigs.SharedXP.Harmony
     [HarmonyPatch("Update")]
     public class GameManager_Update
     {
-        const float UpdatePeriod = 5.0f;
+        const float UpdatePeriod = 30.0f;
 
         private static string[] _experiences = { "_xpFromHarvesting", "_xpFromCrafting", "_xpFromKill", "_xpFromLoot", "_xpFromQuest", "_xpFromRepairBlock", "_xpFromUpgradeBlock", "_xpFromSelling" };
         private static float _nextUpdateTime = 0.0f;
