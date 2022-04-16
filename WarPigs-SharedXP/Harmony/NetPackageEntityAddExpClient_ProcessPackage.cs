@@ -21,12 +21,11 @@ namespace WarPigs.SharedXP.Harmony
             EntityAlive entityAlive = (EntityAlive)_world.GetEntity(___entityId);
             if (entityAlive != null)
             {
-                
                 Progression.XPTypes xpType = (Progression.XPTypes)___xpType;
                 string cvarXPName = GetCvarFromXPType(xpType);
 
                 Log.Out($"Adding XP: Entity: {entityAlive.GetDebugName()} cvarXPName: {cvarXPName} xpType: {xpType} XP: {___xp}");
-                entityAlive.Progression.AddLevelExp(___xp, cvarXPName, xpType, true);
+                entityAlive.Progression.AddLevelExp(___xp, cvarXPName, xpType, false);
                 return false;
 			}
 			else
