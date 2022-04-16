@@ -44,7 +44,6 @@ namespace WarPigs.SharedXP.Harmony
 
                     }
                     //var localXp = localPlayer.GetCVar(experience);
-                    maxXp += 10;
                     Log.Out($"---MaxXP: {maxXp}");
                     foreach (EntityPlayer player in GameManager.Instance.World.Players.list)// this list is only of active players
                     {
