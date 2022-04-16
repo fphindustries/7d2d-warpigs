@@ -50,7 +50,10 @@ namespace WarPigs.SharedXP.Harmony
                         var playerXp = player.GetCVar(experienceType);
                         if (playerXp < maxXp)
                         {
+                            var nextLevel = player.Progression.ExpToNextLevel;
                             var newXp = Convert.ToInt32(maxXp - playerXp);
+                            Log.Out($"{player.GetDebugName()}: NextLevel: {nextLevel} newXP: {newXp}");
+                            newXp = Math.Min(newXp, nextLevel);
                             Log.Out($"Adding {newXp} {experienceType} to {player.GetDebugName()}");
                             var clientInfo = SingletonMonoBehaviour<ConnectionManager>.Instance.Clients.ForEntityId(player.entityId);
                             if(clientInfo != null)
