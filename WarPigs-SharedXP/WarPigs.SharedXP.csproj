@@ -72,6 +72,7 @@
     <Compile Include="Harmony\EntityPlayerLocal_Update.cs" />
     <Compile Include="Harmony\GameManager_Update.cs" />
     <Compile Include="Harmony\Init.cs" />
+    <Compile Include="Harmony\NetPackageEntityAddExpClient_ProcessPackage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
