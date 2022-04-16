@@ -22,18 +22,7 @@ namespace WarPigs.SharedXP.Harmony
             if (Time.time > _nextUpdateTime)
             {
                 Log.Out("XP Check");
-                EntityPlayerLocal localPlayer = null;
-                List<EntityPlayerLocal> localPlayers = GameManager.Instance.World.GetLocalPlayers();
-                if (localPlayers != null && localPlayers.Count > 0)
-                {
-                    localPlayer = localPlayers[0];
-                }
-
-                if (localPlayer == null)
-                {
-                    Log.Out("Unable to find local player");
-                    return;
-                }
+                EntityPlayerLocal localPlayer = __instance;
 
                 foreach (var experience in _experiences)
                 {
@@ -48,12 +37,30 @@ namespace WarPigs.SharedXP.Harmony
                     {
                         var newXp = Convert.ToInt32(maxXp - localXp);
                         Log.Out($"Adding {newXp} {experience} to Local Player");
-                        localPlayer.Progression.AddLevelExp(newXp, experience, Progression.XPTypes.Other, false);
+                        localPlayer.Progression.AddLevelExp(newXp, experience, GetXPTypeFromCvar(experience), false);
                     }
 
                 }
                 _nextUpdateTime = Time.time + UpdatePeriod;
             }
         }
+
+        private static Progression.XPTypes GetXPTypeFromCvar(string cvar)
+        {
+            switch (cvar)
+            {
+                case "_xpFromHarvesting": return Progression.XPTypes.Harvesting;
+                case "_xpFromCrafting": return Progression.XPTypes.Crafting;
+                case "_xpFromKill": return Progression.XPTypes.Kill;
+                case "_xpFromLoot": return Progression.XPTypes.Looting;
+                case "_xpFromQuest": return Progression.XPTypes.Quest;
+                case "_xpFromRepairBlock": return Progression.XPTypes.Repairing;
+                case "_xpFromUpgradeBlock": return Progression.XPTypes.Upgrading;
+                case "_xpFromSelling": return Progression.XPTypes.Selling;
+                default:
+                    return Progression.XPTypes.Other;
+            }
+        }
+
     }
 }
