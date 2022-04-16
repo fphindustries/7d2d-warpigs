@@ -19,6 +19,7 @@ namespace WarPigs.SharedXP.Harmony
 
         private static void Postfix(GameManager __instance)
         {
+            if (!__instance.gameStateManager.IsGameStarted()) return;
             if (!GameManager.IsDedicatedServer) return;
 
             if (Time.time > _nextUpdateTime)
@@ -27,6 +28,7 @@ namespace WarPigs.SharedXP.Harmony
 
                 foreach (var experience in _experiences)
                 {
+                    Log.Out($"+{experience}");
                     float maxXp = 0.0f;
                     foreach (EntityPlayer player in GameManager.Instance.World.Players.list)// this list is only of active players
                     {

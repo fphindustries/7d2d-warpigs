@@ -19,34 +19,34 @@ namespace WarPigs.SharedXP.Harmony
 
         private static void Postfix(EntityPlayerLocal __instance)
         {
-            if (Time.time > _nextUpdateTime)
-            {
-                Log.Out("XP Check");
-                EntityPlayerLocal localPlayer = __instance;
+            //if (Time.time > _nextUpdateTime)
+            //{
+            //    Log.Out("XP Check");
+            //    EntityPlayerLocal localPlayer = __instance;
 
-                foreach (var experience in _experiences)
-                {
-                    float maxXp = 0.0f;
-                    foreach (EntityPlayer player in GameManager.Instance.World.Players.list)// this list is only of active players
-                    {
-                        var playerXp = player.GetCVar(experience);
-                        Log.Out($"--{player.GetDebugName()}: {playerXp}");
-                        maxXp = Math.Max(maxXp, playerXp);
+            //    foreach (var experience in _experiences)
+            //    {
+            //        float maxXp = 0.0f;
+            //        foreach (EntityPlayer player in GameManager.Instance.World.Players.list)// this list is only of active players
+            //        {
+            //            var playerXp = player.GetCVar(experience);
+            //            Log.Out($"--{player.GetDebugName()}: {playerXp}");
+            //            maxXp = Math.Max(maxXp, playerXp);
 
-                    }
-                    var localXp = localPlayer.GetCVar(experience);
-                    Log.Out($"--MaxXP: {maxXp}");
-                    Log.Out($"->{localPlayer.GetDebugName()}: {localXp}");
-                    if (localXp < maxXp)
-                    {
-                        var newXp = Convert.ToInt32(maxXp - localXp);
-                        Log.Out($"Adding {newXp} {experience} to Local Player");
-                        localPlayer.Progression.AddLevelExp(newXp, experience, GetXPTypeFromCvar(experience), false);
-                    }
+            //        }
+            //        var localXp = localPlayer.GetCVar(experience);
+            //        Log.Out($"--MaxXP: {maxXp}");
+            //        Log.Out($"->{localPlayer.GetDebugName()}: {localXp}");
+            //        if (localXp < maxXp)
+            //        {
+            //            var newXp = Convert.ToInt32(maxXp - localXp);
+            //            Log.Out($"Adding {newXp} {experience} to Local Player");
+            //            localPlayer.Progression.AddLevelExp(newXp, experience, GetXPTypeFromCvar(experience), false);
+            //        }
 
-                }
-                _nextUpdateTime = Time.time + UpdatePeriod;
-            }
+            //    }
+            //    _nextUpdateTime = Time.time + UpdatePeriod;
+            //}
         }
 
         private static Progression.XPTypes GetXPTypeFromCvar(string cvar)
