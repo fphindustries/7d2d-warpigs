@@ -14,7 +14,7 @@ namespace WarPigs.SharedXP.Harmony
     {
         const float UpdatePeriod = 30.0f;
 
-        private static string[] _experiences = { "_xpFromHarvesting", "_xpFromCrafting", "_xpFromKill", "_xpFromLoot", "_xpFromQuest", "_xpFromRepairBlock", "_xpFromUpgradeBlock", "_xpFromSelling" };
+        private static string[] _experiences = { "_xpFromHarvesting", "_xpFromCrafting", "_xpFromKill", "_xpFromLoot", "_xpFromQuest", "_xpFromRepairBlock", "_xpFromUpgradeBlock", "_xpFromSelling", "_xpOther", "_xpFromParty" };
         private static float _nextUpdateTime = 0.0f;
 
         private static void Postfix(GameManager __instance)
@@ -92,6 +92,7 @@ namespace WarPigs.SharedXP.Harmony
                 case "_xpFromRepairBlock": return Progression.XPTypes.Repairing;
                 case "_xpFromUpgradeBlock": return Progression.XPTypes.Upgrading;
                 case "_xpFromSelling": return Progression.XPTypes.Selling;
+                case "_xpFromParty": return Progression.XPTypes.Party;
                 default:
                     return Progression.XPTypes.Other;
             }
