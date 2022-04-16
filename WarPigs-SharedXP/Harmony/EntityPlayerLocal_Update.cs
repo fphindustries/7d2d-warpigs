@@ -30,10 +30,14 @@ namespace WarPigs.SharedXP.Harmony
                     foreach (EntityPlayer player in GameManager.Instance.World.Players.list)// this list is only of active players
                     {
                         var playerXp = player.GetCVar(experience);
+                        Log.Out($"--{player.GetDebugName()}: {playerXp}");
                         maxXp = Math.Max(maxXp, playerXp);
+
                     }
                     var localXp = localPlayer.GetCVar(experience);
-                    if(localXp < maxXp)
+                    Log.Out($"--MaxXP: {maxXp}");
+                    Log.Out($"->{localPlayer.GetDebugName()}: {localXp}");
+                    if (localXp < maxXp)
                     {
                         var newXp = Convert.ToInt32(maxXp - localXp);
                         Log.Out($"Adding {newXp} {experience} to Local Player");
