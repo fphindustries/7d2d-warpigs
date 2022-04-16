@@ -13,6 +13,7 @@ namespace WarPigs.SharedXP.Harmony
     {
         private static bool Prefix(NetPackageModifyCVar __instance, World _world, GameManager _callbacks, int ___m_entityId, string ___cvarName, float ___value)
         {
+            Log.Out($"---CVar Update: {___m_entityId} {___cvarName} {___value}");
             if (!GameManager.IsDedicatedServer) return true;
 
             if(___cvarName.StartsWith("_xp"))
