@@ -19,26 +19,43 @@ namespace WarPigs.SharedXP.Harmony
 
         private static void Postfix(GameManager __instance)
         {
+            //Make sure the game is urnning
             if (!__instance.gameStateManager.IsGameStarted()) return;
+
+            //Make sure we're a dedicated server
             if (!GameManager.IsDedicatedServer) return;
+
+            //Make sure we have players logged in
+            if (GameManager.Instance.World.Players.list.Count == 0) return;
 
             if (Time.time > _nextUpdateTime)
             {
                 Log.Out("Server XP Check");
 
-                foreach (var experience in _experiences)
+                foreach (var experienceType in _experiences)
                 {
-                    Log.Out($"+{experience}");
+                    Log.Out($"+{experienceType}");
                     float maxXp = 0.0f;
                     foreach (EntityPlayer player in GameManager.Instance.World.Players.list)// this list is only of active players
                     {
-                        var playerXp = player.GetCVar(experience);
-                        Log.Out($"--{player.GetDebugName()}: {playerXp}");
+                        var playerXp = player.GetCVar(experienceType);
+                        Log.Out($"---{player.GetDebugName()}: {playerXp}");
                         maxXp = Math.Max(maxXp, playerXp);
 
                     }
                     //var localXp = localPlayer.GetCVar(experience);
-                    Log.Out($"--MaxXP: {maxXp}");
+                    maxXp += 10;
+                    Log.Out($"---MaxXP: {maxXp}");
+                    foreach (EntityPlayer player in GameManager.Instance.World.Players.list)// this list is only of active players
+                    {
+                        var playerXp = player.GetCVar(experienceType);
+                        if (playerXp < maxXp)
+                        {
+                            var newXp = Convert.ToInt32(maxXp - playerXp);
+                            Log.Out($"Adding {newXp} {experienceType} to {player.GetDebugName()}");
+                            player.Progression.AddLevelExp(newXp, experienceType, GetXPTypeFromCvar(experienceType), false);
+                        }
+                    }
                     //Log.Out($"->{localPlayer.GetDebugName()}: {localXp}");
                     //if (localXp < maxXp)
                     //{
