@@ -19,6 +19,7 @@ namespace WarPigs.SharedXP.Harmony
 
         private static void Postfix(GameManager __instance)
         {
+            return;
             //Make sure the game is urnning
             if (!__instance.gameStateManager.IsGameStarted()) return;
 
