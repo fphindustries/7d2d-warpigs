@@ -69,12 +69,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Harmony\EntityBuff_SetCustomVar.cs" />
-    <Compile Include="Harmony\EntityBuff_SetCustomVarNetwork.cs" />
+    <Compile Include="GameManager_PlayerSpawnedInWorld.cs" />
     <Compile Include="Harmony\GameManager_Update.cs" />
     <Compile Include="Harmony\Init.cs" />
-    <Compile Include="Harmony\NetPackageEntityAddExpClient_ProcessPackage.cs" />
-    <Compile Include="Harmony\NetPackageModifyCVar_ProcessPackage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

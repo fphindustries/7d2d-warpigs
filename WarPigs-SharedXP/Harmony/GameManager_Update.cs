@@ -8,13 +8,19 @@ using UnityEngine;
 
 namespace WarPigs.SharedXP.Harmony
 {
+    /// <summary>
+    /// Patches GameManager.Update to make sure all players are at the same level.
+    /// Note that players are only progessed by one level per check
+    /// </summary>
     [HarmonyPatch(typeof(GameManager))]
     [HarmonyPatch("Update")]
     public class GameManager_Update
     {
+        /// <summary>
+        /// Number of seconds between Level checks
+        /// </summary>
         const float UpdatePeriod = 30.0f;
 
-        private static string[] _experiences = { "_xpFromHarvesting", "_xpFromCrafting", "_xpFromKill", "_xpFromLoot", "_xpFromQuest", "_xpFromRepairBlock", "_xpFromUpgradeBlock", "_xpFromSelling", "_xpOther", "_xpFromParty" };
         private static float _nextUpdateTime = 0.0f;
 
         private static void Postfix(GameManager __instance)
@@ -30,20 +36,24 @@ namespace WarPigs.SharedXP.Harmony
 
             if (Time.time > _nextUpdateTime)
             {
-                Log.Out("Server XP Check");
+                Log.Out("FPHI: Server Level Check");
 
+                //Iterate through players to determine the max level
                 int maxLevel = 0;
                 foreach (EntityPlayer player in GameManager.Instance.World.Players.list)// this list is only of active players
                 {
-                    Log.Out($"---{player.GetDebugName()}: {player.Progression.Level}");
+                    Log.Out($"FPHI: ---{player.GetDebugName()}: {player.Progression.Level}");
                     maxLevel = Math.Max(player.Progression.Level, maxLevel);
                 }
+
+                //Now that we know the max level, iterate the players again and make sure
+                //they're at that level
                 foreach (EntityPlayer player in GameManager.Instance.World.Players.list)// this list is only of active players
                 {
                     if(player.Progression.Level < maxLevel)
                     {
                         var expToNextLevel = player.Progression.ExpToNextLevel;
-                        Log.Out($"---Adding {expToNextLevel} XP to {player.GetDebugName()} to Progress");
+                        Log.Out($"FPHI: ---Adding {expToNextLevel} XP to {player.GetDebugName()} to Progress");
                         var clientInfo = SingletonMonoBehaviour<ConnectionManager>.Instance.Clients.ForEntityId(player.entityId);
                         if (clientInfo != null)
                         {
@@ -55,23 +65,5 @@ namespace WarPigs.SharedXP.Harmony
             }
 
         }
-        private static Progression.XPTypes GetXPTypeFromCvar(string cvar)
-        {
-            switch (cvar)
-            {
-                case "_xpFromHarvesting": return Progression.XPTypes.Harvesting;
-                case "_xpFromCrafting": return Progression.XPTypes.Crafting;
-                case "_xpFromKill": return Progression.XPTypes.Kill;
-                case "_xpFromLoot": return Progression.XPTypes.Looting;
-                case "_xpFromQuest": return Progression.XPTypes.Quest;
-                case "_xpFromRepairBlock": return Progression.XPTypes.Repairing;
-                case "_xpFromUpgradeBlock": return Progression.XPTypes.Upgrading;
-                case "_xpFromSelling": return Progression.XPTypes.Selling;
-                case "_xpFromParty": return Progression.XPTypes.Party;
-                default:
-                    return Progression.XPTypes.Other;
-            }
-        }
-
     }
 }
