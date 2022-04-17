@@ -15,9 +15,23 @@ namespace WarPigs.SharedXP.Harmony
         {
             if (_name.StartsWith("_xp"))
             {
-                Log.Out($"EntityBuff_SetCustomVarNetwork> {_name} {_value}");
-            }
-            return true;
+				if (!__instance.parent.isEntityRemote)
+				{
+					return false;
+				}
+				if (_name[0] == '.')
+				{
+					return false;
+				}
+				if (SingletonMonoBehaviour<ConnectionManager>.Instance.IsServer)
+				{
+					SingletonMonoBehaviour<ConnectionManager>.Instance.SendPackage(NetPackageManager.GetPackage<NetPackageModifyCVar>().Setup(__instance.parent, _name, _value), true, -1, -1, -1, -1);
+					return false;
+				}
+				SingletonMonoBehaviour<ConnectionManager>.Instance.SendToServer(NetPackageManager.GetPackage<NetPackageModifyCVar>().Setup(__instance.parent, _name, _value), true);
+				return false;
+			}
+			return true;
         }
 
     }

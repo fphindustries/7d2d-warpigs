@@ -44,40 +44,31 @@ namespace WarPigs.SharedXP.Harmony
                         maxXp = Math.Max(maxXp, playerXp);
 
                     }
-                    //var localXp = localPlayer.GetCVar(experience);
-                    Log.Out($"---MaxXP: {maxXp}");
-                    foreach (EntityPlayer player in GameManager.Instance.World.Players.list)// this list is only of active players
-                    {
-                        var playerXp = player.GetCVar(experienceType);
-                        if (playerXp < maxXp)
-                        {
-                            var nextLevel = player.Progression.ExpToNextLevel;
-                            var newXp = Convert.ToInt32(maxXp - playerXp);
-                            Log.Out($"{player.GetDebugName()}: NextLevel: {nextLevel} newXP: {newXp}");
-                            newXp = Math.Min(newXp, nextLevel);
-                            Log.Out($"Adding {newXp} {experienceType} to {player.GetDebugName()}");
-                            var clientInfo = SingletonMonoBehaviour<ConnectionManager>.Instance.Clients.ForEntityId(player.entityId);
-                            if(clientInfo != null)
-                            {
-                                clientInfo.SendPackage(NetPackageManager.GetPackage<NetPackageEntityAddExpClient>().Setup(player.entityId, newXp, GetXPTypeFromCvar(experienceType)));
-                            }
-                            else
-                            {
-                                Log.Out("Couldn't find clientinfo");
-                            }
-
-
-                            //player.Progression.AddLevelExp(newXp, experienceType, c, false);
-                            
-                        }
-                    }
-                    //Log.Out($"->{localPlayer.GetDebugName()}: {localXp}");
-                    //if (localXp < maxXp)
+                    
+                    //Log.Out($"---MaxXP: {maxXp}");
+                    //foreach (EntityPlayer player in GameManager.Instance.World.Players.list)// this list is only of active players
                     //{
-                    //    var newXp = Convert.ToInt32(maxXp - localXp);
-                    //    Log.Out($"Adding {newXp} {experience} to Local Player");
-                    //    localPlayer.Progression.AddLevelExp(newXp, experience, GetXPTypeFromCvar(experience), false);
+                    //    var playerXp = player.GetCVar(experienceType);
+                    //    if (playerXp < maxXp)
+                    //    {
+                    //        var nextLevel = player.Progression.ExpToNextLevel;
+                    //        var newXp = Convert.ToInt32(maxXp - playerXp);
+                    //        Log.Out($"{player.GetDebugName()}: NextLevel: {nextLevel} newXP: {newXp}");
+                    //        newXp = Math.Min(newXp, nextLevel);
+                    //        Log.Out($"Adding {newXp} {experienceType} to {player.GetDebugName()}");
+                    //        var clientInfo = SingletonMonoBehaviour<ConnectionManager>.Instance.Clients.ForEntityId(player.entityId);
+                    //        if(clientInfo != null)
+                    //        {
+                    //            clientInfo.SendPackage(NetPackageManager.GetPackage<NetPackageEntityAddExpClient>().Setup(player.entityId, newXp, GetXPTypeFromCvar(experienceType)));
+                    //        }
+                    //        else
+                    //        {
+                    //            Log.Out("Couldn't find clientinfo");
+                    //        }
+                           
+                    //    }
                     //}
+
 
                 }
                 _nextUpdateTime = Time.time + UpdatePeriod;
