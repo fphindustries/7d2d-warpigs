@@ -19,7 +19,12 @@
 	<remove xpath="//item[@name='gunBotT1JunkSledgeSchematic']" />
 	<remove xpath="//item[@name='gunBotT2JunkTurretSchematic']" />
 	<remove xpath="//item[@name='gunBotT3JunkDroneSchematic']" />
+	<remove xpath="//item[@name='shotgunTurretSchematic']" />
+	<remove xpath="//item[@name='autoTurretSchematic']" />
 
+	<remove xpath="//item[@name='modGunMeleeTheHunterSchematic']" />
+	<remove xpath="//item[@name='modGunBowPolymerStringSchematic']" />
+	<remove xpath="//item[@name='modGunBowArrowRestSchematic']" />	
 	<remove xpath="//item[@name='modGunBarrelExtenderSchematic']" />
 	<remove xpath="//item[@name='modGunDuckbillSchematic']" />
 	<remove xpath="//item[@name='modGunFlashlightSchematic']" />
