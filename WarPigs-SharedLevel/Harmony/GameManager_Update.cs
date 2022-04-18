@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace WarPigs.SharedXP.Harmony
+namespace WarPigs.SharedLevel.Harmony
 {
     /// <summary>
     /// Patches GameManager.Update to make sure all players are at the same level.

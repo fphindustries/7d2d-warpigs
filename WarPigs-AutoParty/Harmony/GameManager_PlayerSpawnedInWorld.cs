@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WarPigs.SharedXP.Harmony
+namespace WarPigs.AutoParty.Harmony
 {
     [HarmonyPatch(typeof(GameManager))]
     [HarmonyPatch(nameof(GameManager.PlayerSpawnedInWorld))]

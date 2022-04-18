@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 	<xml>
 		<ModInfo>
-			<Name value="WarPigs-SharedXP"/>
-			<Description value="Shared Experience!"/>
+			<Name value="WarPigs-AutoParty"/>
+			<Description value="Automatically join players to a party when joining a server."/>
 			<Author value="FPHI"/>
 			<Version value="1.0"/>
 		</ModInfo>
