@@ -1,0 +1,3 @@
+<NoRepairs>
+	<remove xpath="//recipe[@name='resourceRepairKit']" />
+</NoRepairs>
