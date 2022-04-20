@@ -1,6 +1,4 @@
 <NoRepairs>
 	<set xpath="/items/item/property[@name='DegradationBreaksAfter' and @value='false']/@value">true</set>
-	<!--Set everything to the resource repair kit which isn't in this mod...look for cleaner way to do this-->
-	<set xpath="/items/item/property[@name='RepairTools']/@value">resourceRepairKit</set>
 	<remove xpath="//item[@name='resourceRepairKit']" />
 </NoRepairs>
