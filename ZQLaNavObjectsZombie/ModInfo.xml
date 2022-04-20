@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<xml>
+	<ModInfo>
+		<Name value="ZQLaNavObjectsZombie" />
+		<Description value="ZQLaNavObjectsZombie is a Proof of Concept modlet that adds zombies the new on-screen sprite system introduced in A19." />
+		<Author value="Sirillion" />
+		<Version value="19.0.Release1" />
+		<Website value="" />
+	</ModInfo>
+</xml>
