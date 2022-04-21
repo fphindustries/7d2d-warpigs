@@ -1,0 +1,12 @@
+<mod>
+	<info>
+		<name>ZQLaNavObjectsZombie</name>
+		<author>Sirillion</author>
+		<description>ZQLaNavObjectsZombie is a Proof of Concept modlet that adds zombies the new on-screen sprite system introduced in A19.</description>
+		<mod_version>19.0.Release1</mod_version>
+		<game_version>19.0</game_version>
+		<launcher_version>0.0.0</launcher_version>
+	</info>
+	<dependencies>
+	</dependencies>
+</mod>

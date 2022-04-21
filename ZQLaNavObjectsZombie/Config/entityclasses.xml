@@ -1,0 +1,7 @@
+﻿<ZQLxNavObjects>
+
+<!--	// ZQL // NavObjects Zombie Injection -->
+
+	<append xpath="/entity_classes/entity_class[@name='zombieTemplateMale']/property[@name='NavObject']/@value">,zombie</append>
+
+</ZQLxNavObjects>
