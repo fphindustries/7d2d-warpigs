@@ -1,0 +1,45 @@
+<sixseater>
+    <remove xpath="//vehicle[@name='vehicle4x4Truck']/property[@class='seat2']" />
+    <remove xpath="//vehicle[@name='vehicle4x4Truck']/property[@class='seat3']" />
+    <append xpath="//vehicle[@name='vehicle4x4Truck']">
+		<property class="seat2">
+			<property name="position" value="-.80, .65, -1.65"/>
+			<property name="rotation" value="-33, 270, 0"/>
+			<property name="exit" value="-.8,0,-2.8 ~ -1.6,0,-2 ~ 1.6,0,-2 ~ -.5,0,-2.8 ~ -.5,0,2.6 ~ -.4,2.1,-1"/>
+			<property name="IKHandLPosition" value="-.27, .87, .14"/>
+			<property name="IKHandLRotation" value="41, -30, 18"/>
+			<property name="IKHandRPosition" value=".27, .87, .14"/>
+			<property name="IKHandRRotation" value="41, 30, -18"/>
+		</property>
+		<property class="seat3">
+			<property name="position" value=".80, .65, -1.65"/>
+			<property name="rotation" value="-33, 90, 0"/>
+			<property name="exit" value="-.8,0,-2.8 ~ -1.6,0,-2 ~ 1.6,0,-2 ~ -.5,0,-2.8 ~ -.5,0,2.6 ~ -.4,2.1,-1"/>
+			<property name="IKHandLPosition" value="-.27, .87, .14"/>
+			<property name="IKHandLRotation" value="41, -30, 18"/>
+			<property name="IKHandRPosition" value=".27, .87, .14"/>
+			<property name="IKHandRRotation" value="41, 30, -18"/>
+		</property>
+		<property class="seat4">
+			<property name="class" value="Seat"/>
+			<property name="position" value="-.43, .75, -2.65"/>
+			<property name="rotation" value="-33, 180, 0"/>
+			<property name="exit" value="-.8,0,-2.8 ~ -1.6,0,-2 ~ 1.6,0,-2 ~ -.5,0,-2.8 ~ -.5,0,2.6 ~ -.4,2.1,-1"/>
+			<property name="IKHandLPosition" value="-.47, 0, -.5"/>
+			<property name="IKHandLRotation" value="41, -30, 18"/>
+			<property name="IKHandRPosition" value=".47, 0, -.5"/>
+			<property name="IKHandRRotation" value="41, 30, -18"/>
+		</property>
+		<property class="seat5">
+			<property name="class" value="Seat"/>
+			<property name="position" value=".43, .75, -2.65"/>
+			<property name="rotation" value="-33, 180, 0"/>
+			<property name="exit" value="-.8,0,-2.8 ~ -1.6,0,-2 ~ 1.6,0,-2 ~ -.5,0,-2.8 ~ -.5,0,2.6 ~ -.4,2.1,-1"/>
+			<property name="IKHandLPosition" value="-.47, 0, -.5"/>
+			<property name="IKHandLRotation" value="41, -30, 18"/>
+			<property name="IKHandRPosition" value=".47, 0, -.5"/>
+			<property name="IKHandRRotation" value="41, 30, -18"/>
+		</property>
+
+    </append>    
+</sixseater>
