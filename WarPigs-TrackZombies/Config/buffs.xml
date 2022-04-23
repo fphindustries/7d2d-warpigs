@@ -1,18 +1,24 @@
 <config>
     <append xpath="//buffs">
-        <buff name="buffZombieTracker" name_key="buffZombieTrackerName" description_key="buffAnimalTrackerDesc" icon="ui_game_symbol_animal_tracker" icon_color="255,255,0">
+        <buff name="buffZombieTracker" name_key="buffZombieTrackerName" description_key="buffZombieTrackerDesc" icon="ui_game_symbol_Zombie_tracker">
             <duration value="0"/>
             <update_rate value=".5"/>
             <display_value value=".ZombieTrackerDelay"/>
             <display_value_format value="time"/>
-
             <effect_group name="Startup">
+                <!-- set the time delay for Zombie tracking -->
+                <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".ZombieTrackerDelay" operation="set" value="4">
+                    <requirement name="ProgressionLevel" progression_name="perkZombieTracker" operation="LT" value="2"/>
+                </triggered_effect>
                 <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".ZombieTrackerDelay" operation="set" value="3">
+                    <requirement name="ProgressionLevel" progression_name="perkZombieTracker" operation="Equals" value="2"/>
                 </triggered_effect>
                 <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".ZombieTrackerDelay" operation="set" value="2">
+                    <requirement name="ProgressionLevel" progression_name="perkZombieTracker" operation="Equals" value="3"/>
                 </triggered_effect>
 
                 <triggered_effect trigger="onSelfBuffRemove" action="ModifyCVar" cvar=".ZombieTrackerDelay" operation="set" value="0"/>
+
                 <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".ZombieTrackerDelay" operation="add" value="-.5"/>
             </effect_group>
 
@@ -20,16 +26,16 @@
                 <requirement name="CVarCompare" cvar=".ZombieTrackerDelay" operation="LTE" value="0"/>
 
                 <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".ZombieTrackerDelay" operation="set" value=".0117">
+                    <requirement name="ProgressionLevel" progression_name="perkZombieTracker" operation="Equals" value="1"/>
                     <requirement name="HasTrackedEntity" tags="zombie"/>
-                    <requirement name="ProgressionLevel" progression_name="perkThreatAssessment" operation="Equals" value="1"/>
                 </triggered_effect>
                 <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".ZombieTrackerDelay" operation="set" value=".0117">
+                    <requirement name="ProgressionLevel" progression_name="perkZombieTracker" operation="Equals" value="2"/>
                     <requirement name="HasTrackedEntity" tags="feral"/>
-                    <requirement name="ProgressionLevel" progression_name="perkThreatAssessment" operation="Equals" value="2"/>
                 </triggered_effect>
                 <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".ZombieTrackerDelay" operation="set" value=".0117">
+                    <requirement name="ProgressionLevel" progression_name="perkZombieTracker" operation="Equals" value="3"/>
                     <requirement name="HasTrackedEntity" tags="radiated"/>
-                    <requirement name="ProgressionLevel" progression_name="perkThreatAssessment" operation="Equals" value="3"/>
                 </triggered_effect>
             </effect_group>
 
@@ -55,7 +61,7 @@
             </effect_group>
         </buff>
 
-        <buff name="buffZombieTrackerAcquired" name_key="buffZombieTrackerName" description_key="buffZombieTrackerAcquiredDesc" icon="ui_game_symbol_animal_tracker" icon_color="255,0,0">
+        <buff name="buffZombieTrackerAcquired" name_key="buffZombieTrackerName" description_key="buffZombieTrackerAcquiredDesc" icon="ui_game_symbol_Zombie_tracker" icon_color="0,255,0">
             <duration value="0"/>
             <display_value value=".ZombieTrackerLoseTimer"/>
             <display_value_format value="time"/>
@@ -73,42 +79,34 @@
                 <triggered_effect trigger="onSelfBuffRemove" action="ModifyCVar" cvar=".ZombieTrackerTerminate" operation="set" value="0"/>
             </effect_group>
 
-            <effect_group name="check conditions for no trackable zombies">
+            <effect_group name="check conditions for no trackable Zombies">
                 <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".ZombieTrackerTerminate" operation="set" value="1"/>
 
                 <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".ZombieTrackerTerminate" operation="set" value="0">
-                    <requirement name="HasTrackedEntity" tags="zombietracking"/>
-                    <requirement name="ProgressionLevel" progression_name="perkThreatAssessment" operation="Equals" value="1"/>
+                    <requirement name="ProgressionLevel" progression_name="perkZombieTracker" operation="Equals" value="1"/>
+                    <requirement name="HasTrackedEntity" tags="zombie" />
                 </triggered_effect>
 
                 <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".ZombieTrackerTerminate" operation="set" value="0">
-                    <requirement name="HasTrackedEntity" tags="feraltracking"/>
-                    <requirement name="ProgressionLevel" progression_name="perkThreatAssessment" operation="Equals" value="2"/>
+                    <requirement name="ProgressionLevel" progression_name="perkZombieTracker" operation="Equals" value="2"/>
+                    <requirement name="HasTrackedEntity" tags="feral" />
                 </triggered_effect>
 
                 <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".ZombieTrackerTerminate" operation="set" value="0">
-                    <requirement name="HasTrackedEntity" tags="radiatedtracking"/>
-                    <requirement name="ProgressionLevel" progression_name="perkThreatAssessment" operation="Equals" value="3"/>
-                </triggered_effect>
-
-                <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".ZombieTrackerTerminate" operation="set" value="0">
-                    <requirement name="HasTrackedEntity" tags="demontracking"/>
-                    <requirement name="ProgressionLevel" progression_name="perkThreatAssessment" operation="Equals" value="4"/>
+                    <requirement name="ProgressionLevel" progression_name="perkZombieTracker" operation="Equals" value="3"/>
+                    <requirement name="HasTrackedEntity" tags="radiated" />
                 </triggered_effect>
             </effect_group>
 
-            <effect_group name="Track zombies">
-                <passive_effect name="Tracking" operation="base_set" value="1" tags="zombietracking">
-                    <requirement name="ProgressionLevel" progression_name="perkThreatAssessment" operation="Equals" value="1"/>
+            <effect_group name="Track Zombies">
+                <passive_effect name="Tracking" operation="base_set" value="1" tags="zombie">
+                    <requirement name="ProgressionLevel" progression_name="perkZombieTracker" operation="Equals" value="1"/>
                 </passive_effect>
-                <passive_effect name="Tracking" operation="base_set" value="1" tags="feraltracking">
-                    <requirement name="ProgressionLevel" progression_name="perkThreatAssessment" operation="Equals" value="2"/>
+                <passive_effect name="Tracking" operation="base_set" value="1" tags="feral">
+                    <requirement name="ProgressionLevel" progression_name="perkZombieTracker" operation="Equals" value="2"/>
                 </passive_effect>
-                <passive_effect name="Tracking" operation="base_set" value="1" tags="radiatedtracking">
-                    <requirement name="ProgressionLevel" progression_name="perkThreatAssessment" operation="Equals" value="3"/>
-                </passive_effect>
-                <passive_effect name="Tracking" operation="base_set" value="1" tags="demontracking">
-                    <requirement name="ProgressionLevel" progression_name="perkThreatAssessment" operation="Equals" value="4"/>
+                <passive_effect name="Tracking" operation="base_set" value="1" tags="radiated">
+                    <requirement name="ProgressionLevel" progression_name="perkZombieTracker" operation="GTE" value="3"/>
                 </passive_effect>
             </effect_group>
 
