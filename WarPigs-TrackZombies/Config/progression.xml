@@ -1,6 +1,6 @@
 <config>
     <append xpath="//perks">
-	<perk name="perkZombieTracker" max_level="3" parent="skillPerceptionGeneral" name_key="perkZombieTrackerName" desc_key="perkZombieTrackerDesc" icon="ui_game_symbol_animal_tracker">
+	<perk name="perkZombieTracker" max_level="3" parent="skillPerceptionGeneral" name_key="perkZombieTrackerName" desc_key="perkZombieTrackerDesc" icon="ui_game_symbol_zombie">
 		<level_requirements level="1"><requirement name="ProgressionLevel" progression_name="attPerception" operation="GTE" value="1" desc_key="reqPerceptionLevel01"/></level_requirements>
 		<level_requirements level="2"><requirement name="ProgressionLevel" progression_name="attPerception" operation="GTE" value="4" desc_key="reqPerceptionLevel04"/></level_requirements>
 		<level_requirements level="3"><requirement name="ProgressionLevel" progression_name="attPerception" operation="GTE" value="7" desc_key="reqPerceptionLevel07"/></level_requirements>
