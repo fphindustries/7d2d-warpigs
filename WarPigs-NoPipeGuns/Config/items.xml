@@ -1,0 +1,6 @@
+<NoPipeGuns>
+	<remove xpath="//item[@name='gunHandgunT0PipePistol']" />
+	<remove xpath="//item[@name='gunShotgunT0PipeShotgun']" />
+	<remove xpath="//item[@name='gunRifleT0PipeRifle']" />
+	<remove xpath="//item[@name='gunMGT0PipeMachineGun']" />
+</NoPipeGuns>

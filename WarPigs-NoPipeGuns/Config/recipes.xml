@@ -1,0 +1,6 @@
+<NoPipeGuns>
+	<remove xpath="//recipe[@name='gunHandgunT0PipePistol']" />
+	<remove xpath="//recipe[@name='gunShotgunT0PipeShotgun']" />
+	<remove xpath="//recipe[@name='gunRifleT0PipeRifle']" />
+	<remove xpath="//recipe[@name='gunMGT0PipeMachineGun']" />
+</NoPipeGuns>
