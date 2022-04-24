@@ -1,0 +1,10 @@
+<Blunderbus>	
+	<append xpath="/lootcontainers/lootgroup[@name='groupAmmoRegularT0']">
+		<item name="ammoBlunderbuss" count="3,6"/>
+	</append>
+
+	<append xpath="/lootcontainers/lootgroup[@name='groupWeaponsT0_Boomstick']">
+		<item name="gunShotgunT0Blunderbuss"/>
+		<item name="ammoBlunderbuss" count="5,12"/>
+	</append>
+</Blunderbus>	
