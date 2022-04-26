@@ -1,0 +1,4 @@
+<config>
+	<set xpath="/items/item[@name='meleeWpnSpearT0StoneSpear']/effect_group[@name='meleeWpnSpearT0StoneSpear']/passive_effect[@name='MaxRange']/@value">4.2</set>
+	<set xpath="/items/item[@name='meleeWpnSpearT1IronSpear']/effect_group[@name='meleeWpnSpearT1IronSpear']/passive_effect[@name='MaxRange']/@value">4.2</set>
+</config>
