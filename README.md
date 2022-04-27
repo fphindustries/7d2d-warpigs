@@ -11,6 +11,8 @@
 - Jeep can now seat 6 people
 - A19 farming changes (Syco54645 mod)
 - Zombie death is ambiguous (Roland's Improved Death Ambiguity Mod updated to A20)
+- Spears have a longer range
+- Chainsaws do more damage to zombies
 
 
 ## Details
